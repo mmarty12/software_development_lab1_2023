@@ -8,11 +8,16 @@ export const Interactive = () => {
 
   process.stdin.on("data", (data) => {
     const parsed = parseFloat(data.toString());
-    if (!Validate(data) || parsed === 0) {
+    values[values.length] = parsed;
+    if (!Validate(data)) {
       console.log(`Error! No valid parameters! Expected a valid one instead.`);
       process.stdout.write(parameters[values.length]);
+      values.pop();
+    } else if (values[0] === 0) {
+      console.log(`Error! a cannot be 0.`);
+      values.pop();
+      process.stdout.write(parameters[values.length]);
     } else {
-      values[values.length] = parsed;
       if (values.length < parameters.length) {
         process.stdout.write(parameters[values.length]);
       } else {
