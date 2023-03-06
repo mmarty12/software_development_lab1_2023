@@ -2,20 +2,18 @@
 
 let isValid = true;
 
-function Validate(a, b, c) {
-  if (a === 0) {
-    console.log(`Error! No valid parameters! Expected a valid instead.`);
+export const Validate = (data) => {
+  const num = parseFloat(data.toString());
+  if (isNaN(num) || data.toString().trim().length !== num.toString().length) {
     isValid = false;
     return isValid;
-  }
-  if (isNaN(a) || isNaN(b) || isNaN(c)) {
-    console.log(`Error! No valid parameters! Expected a valid one instead.`);
-    isValid = false;
+  } else {
+    isValid = true;
     return isValid;
   }
-}
+};
 
-function Calculate(a, b, c) {
+export function Calculate(a, b, c) {
   const descr = Math.pow(b, 2) - 4 * a * c;
   if (descr === 0) {
     const x = -b / (2 * a);
@@ -37,11 +35,4 @@ function Calculate(a, b, c) {
       `Equation to solve: (${a}) x^2 + (${b}) x + (${c}) = 0.\nThere are 0 roots.`
     );
   }
-}
-
-function Solve(a, b, c) {
-  Validate(a, b, c);
-  if (isValid === true) {
-    Calculate(a, b, c);
-  } else return;
 }
