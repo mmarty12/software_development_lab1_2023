@@ -8,8 +8,7 @@ export const Interactive = () => {
 
   process.stdin.on("data", (data) => {
     const parsed = parseFloat(data.toString());
-    const parsedNew = delete parsed[0];
-    if (!Validate(data) || parsedNew === 0) {
+    if (!Validate(data) || parsed === 0) {
       console.log(`Error! No valid parameters! Expected a valid one instead.`);
       process.stdout.write(parameters[values.length]);
     } else {
